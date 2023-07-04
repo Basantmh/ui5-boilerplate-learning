@@ -1,0 +1,54 @@
+{
+  "name": "ui5boilerplate",
+  "version": "1.1.0",
+  "description": "UI5 Boilerplate project",
+  "private": true,
+  "author": "INTEGRTR",
+  "license": "UNLICENSED",
+  "keywords": [
+    "UI5",
+    "INTEGRTR"
+  ],
+  "homepage": "",
+  "scripts": {
+    "start": "ui5 serve -o",
+    "test": "ui5 serve -o test/mockServer.html",
+    "serve-dist": "ui5 serve --config ui5-dist.yaml -o",
+    "build": "ui5 build self-contained --clean-dest",
+    "build-all": "ui5 build self-contained -a --clean-dest",
+    "build-preload": "ui5 build --clean-dest",
+    "build-preload-all": "ui5 build -a --clean-dest",
+    "lint": "eslint webapp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/integrtr/ui5-boilerplate"
+  },
+  "bugs": {
+    "url": "https://github.com/integrtr/ui5-boilerplate/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@prettier/plugin-xml": "^1.2.0",
+    "@ui5/cli": "^2.14.6",
+    "commitlint": "^16.2.1",
+    "editorconfig": "^0.15.3",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1",
+    "ui5-middleware-index": "^0.2.6",
+    "ui5-middleware-livereload": "^0.5.9",
+    "ui5-middleware-livetranspile": "^0.3.6",
+    "ui5-task-transpile": "^0.3.6"
+  },
+  "ui5": {
+    "dependencies": [
+      "ui5-middleware-livereload",
+      "ui5-middleware-index",
+      "ui5-middleware-livetranspile",
+      "ui5-task-transpile"
+    ]
+  }
+}
