@@ -1,48 +1,93 @@
-<mvc:View controllerName="ui5boilerplate.controller.Home"
-  displayBlock="true"
+<mvc:View
+  xmlns:tnt="sap.tnt"
+  controllerName="ui5boilerplate.controller.Home"
   xmlns="sap.m"
   xmlns:mvc="sap.ui.core.mvc"
-  xmlns:core="sap.ui.core">
-  <Page showHeader="false">
-    <FlexBox class="integrtrPanelBg sapUiMediumMarginBottom"
-      height="250px"
-      alignItems="Center"
-      justifyContent="Center"
-      direction="Column">
-      <Image src="https://openui5.org/654aad3012a144881ab07c0bbdd26eb8/phenix_red.svg"
-        class="sapUiMediumMarginTop"
-        width="140px"
-        decorative="false" />
-      <Title class="integrtrPanelText"
-        level="H1"
-        titleStyle="H1"
-        text="{i18n>HELLO_MESSAGE}" />
-    </FlexBox>
-
-    <FlexBox alignItems="Center"
-      justifyContent="Center"
-      direction="Row">
-      <core:Icon class="sapUiTinyMarginEnd"
-        src="sap-icon://edit"
-        color="#031E48" />
-      <Title titleStyle="H5"
-        level="H5"
+  xmlns:core="sap.ui.core"
+>
+  <Page
+    showHeader="true"
+    title="Library Management System"
+    titleAlignment="Center"
+    floatingFooter="false"
+    titleLevel="Auto"
+  >
+    <content>
+      <Text
+        text="Create Membership"
+        textAlign="Center"
         width="100%"
-        text="{i18n>GET_STARTED_TEXT}" />
-    </FlexBox>
+      />
 
+      <FlexBox direction="Column">
+        <Label
+          text="Name"
+          labelFor="input_name"
+          design="Bold"
+        />
+        <Input
+          id="input_name"
+          maxLength="128"
+          type="Text"
+          width="350px"
+          required="true"
+        />
+      </FlexBox>
+      <FlexBox direction="Column">
+        <Label
+          text="Mail ID"
+          design="Bold"
+        />
+        <Input
+          type="Email"
+          width="350px"
+        />
+      </FlexBox>
+      <FlexBox direction="Column">
+        <Label
+          text="Resident Type"
+          design="Bold"
+        />
+        <RadioButtonGroup fieldGroupIds="resident_type">
+          <RadioButton
+            text="Hosteller"
+            groupName="resident_type"
+            selected="true"
+          />
+          <RadioButton
+            text="Non-Hosteller"
+            groupName="resident_type"
+          />
+        </RadioButtonGroup>
+      </FlexBox>
+      <FlexBox direction="Column">
+        <Label
+          text="Interest"
+          design="Bold"
+        />
+        <CheckBox text="Fiction" />
+        <CheckBox text="Non-Fiction" />
+      </FlexBox>
+      <FlexBox direction="Column">
+        <Label
+          text="Course"
+          design="Bold"
+        />
+        <ComboBox />
+      </FlexBox>
+    </content>
     <footer>
       <Toolbar>
-        <Image src="/assets/github_logo.png"
-          width="30px"
-          press="githubLogoPress" />
-        <ToolbarSpacer />
-        <ToolbarSpacer />
-        <Image src="https://cdn.integrtr.com/logos/integrtr_logo_dark.png"
-          width="120px"
-          press="integrtrLogoPress" />
+        <!--added just for understanding-->
+        <Button
+          text="Save"
+          type="Accept"
+        />
+        <Button
+          type="Reject"
+          text="Cancle"
+        />
       </Toolbar>
     </footer>
-
   </Page>
 </mvc:View>

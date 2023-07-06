@@ -1,19 +1,13 @@
-sap.ui.define(['ui5boilerplate/controller/Base.controller'], (BaseController) => {
-  return BaseController.extend('ui5boilerplate.controller.Home', {
-    onInit() {},
-
-    /**
-     * Press event handler for INTEGRTR logo
-     */
-    integrtrLogoPress() {
-      window.open('https://www.integrtr.com', '_blank');
-    },
-
-    /**
-     * Press event handler for GitHub logo
-     */
-    githubLogoPress() {
-      window.open('https://github.com/integrtr/ui5-boilerplate', '_blank');
-    },
-  });
-});
+sap.ui.define(
+  ['sap/ui/core/mvc/Controller', 'sap/ui/model/json/JSONModel'],
+  (Controller, JSONModel) => {
+    return Controller.extend('ui5boilerplate.controller.Home', {
+      onInit() {
+        const courseList = { CourseList: [{ course: 'B.Tech' }, { course: 'B.Com' }, { course: 'BCA' }] };
+        var OModel = new JSONModel();
+        OModel.setData(courseList);
+        this.getView().setModel(OModel, 'Course');
+      }
+    });
+  }
+);
