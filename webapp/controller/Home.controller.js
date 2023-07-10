@@ -4,38 +4,49 @@ sap.ui.define(
   ['sap/ui/core/mvc/Controller', 'sap/ui/model/json/JSONModel', 'sap/m/MessageToast'],
   (Controller, JSONModel, MessageToast) => {
     return Controller.extend('ui5boilerplate.controller.Home', {
-      // OnInit - lifecycle func
+      /*  OnInit - lifecycle function
+       */
       onInit() {
-        const courseList = {
-          CourseList: [{ course: 'B.Tech' }, { course: 'B.Com' }, { course: 'BCA' }],
-        };
         const membership = { membership: [] };
+        /* Create JSON Model
+         */
         var OModel = new JSONModel();
         var OModel1 = new JSONModel();
-        // JSON model for course
-        OModel.setData(courseList);
-        // named model binding, useful when we have multiple model in the same view
-        this.getView().setModel(OModel, 'CourseModel');
-        // JSON model for membership
+        /* Load JSON file data in synchronous mode
+         */
+        OModel.loadData('/model/bachelor_courses.json', false);
+        /* named model binding, useful when we have multiple model in the same view
+         */
+        this.getView().setModel(OModel, 'courseModel');
+        /* JSON model for membership
+         */
         OModel1.setData(membership);
         this.getView().setModel(OModel1, 'membership');
         this.setMaxDobDate();
       },
-      // Set max date for date picker control
+
+      /**
+       * Set maxDate for DatePicker control
+       * @function
+       */
       setMaxDobDate() {
         const dob_picker = this.getView().byId('dob_picker');
         const max_date = new Date();
         dob_picker.setMaxDate(max_date);
       },
-      // create and save membership
+
+      /**
+       * Validate and save membership data to JSON Model
+       * @function
+       */
       saveMembership() {
         const studentId = this.getInputValue('student_id');
         const name = this.getInputValue('name');
         const date_of_birth = this.getInputValue('dob_picker');
         const mail_id = this.getInputValue('email');
-        const resident_type = this.getResidentType();
+        const resident_type = this.getRadioButtonValue('resident_type');
         const interest = this.getInterest();
-        const course = this.getCourse();
+        const course = this.getComboBoxValue('course');
         const membership = {
           studentId: studentId,
           name: name,
@@ -59,20 +70,34 @@ sap.ui.define(
             duration: 2000,
           });
         }
-
-        console.log(this.getView().getModel('membership').getData());
       },
-      // Get input value for control which have getValue method
-      // optional chaining to handle access error
+
+      /**
+       * Get input value for control which have getValue method
+       * optional chaining to handle access error
+       * @function
+       * @param {string} id ID of the control
+       * @return {string} control input value
+       */
       getInputValue(id) {
         return this.getView().byId(id).getValue?.();
       },
 
-      // Get resident Type value
-      getResidentType() {
-        return this.getView().byId('resident_type').getSelectedButton().getText();
+      /**
+       * Get selected RadioButton control text
+       * @function
+       * @param {string} id ID of the control
+       * @return {string} Selected radio button text
+       */
+      getRadioButtonValue(id) {
+        return this.getView().byId(id).getSelectedButton().getText();
       },
-      // Get array list of interest
+
+      /**
+       * Get array list of interest
+       * @function
+       * @return {string[]} Values from multiple CheckBox controls
+       */
       getInterest() {
         let interest = [];
         if (this.getView().byId('interest_1').getSelected()) {
@@ -83,11 +108,24 @@ sap.ui.define(
         }
         return interest;
       },
-      // Get course text from combo box control
-      getCourse() {
-        return this.getView().byId('course').getSelectedItem().getText();
+
+      /**
+       * Get selected value of the combo box control
+       * @function
+       * @param {string} id ID of the control
+       * @return {string} selected value
+       */
+      getComboBoxValue(id) {
+        return this.getView().byId(id).getSelectedItem().getText();
       },
-      // Check if student ID already exist
+
+      /**
+       * Check if studentId already exist in the JSON Model
+       * @function
+       * @param {string[]} membershipArr Array containing membership JSON data
+       * @param {string} studentId studentId provided by the user for validation
+       * @return {boolean} boolean state of validation
+       */
       validateMembership(membershipArr, studentId) {
         return membershipArr.find((currentValue) => {
           return currentValue.studentId === studentId;

@@ -114,12 +114,13 @@
                     required="true"
                 />
                 <ComboBox
-                    items="{ path: 'CourseModel>/CourseList'}"
+                    items="{ path: 'courseModel>/bachelor_degrees'}"
                     required="true"
                     id="course"
+                    width="350px"
                 >
                     <!--Binding for named model, if model is not named then use "course" for relative path-->
-                    <core:Item text="{CourseModel>course}" />
+                    <core:Item text="{courseModel>full_name}" />
                 </ComboBox>
             </FlexBox>
         </content>
