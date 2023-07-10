@@ -1,7 +1,7 @@
 {
   "editor.formatOnSave": true,
   "[xml]": {
-    "editor.defaultFormatter": "DotJoshJohnson.xml"
+    "editor.defaultFormatter": "SAPOSS.vscode-ui5-language-assistant"
   },
   "xmlTools.splitAttributesOnFormat": true,
   "xmlTools.enforcePrettySelfClosingTagOnFormat": true
