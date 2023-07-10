@@ -1,3 +1,4 @@
+//
 sap.ui.define(
   ['sap/ui/core/mvc/Controller', 'sap/ui/model/json/JSONModel'],
   (Controller, JSONModel) => {
@@ -6,7 +7,7 @@ sap.ui.define(
         const courseList = { CourseList: [{ course: 'B.Tech' }, { course: 'B.Com' }, { course: 'BCA' }] };
         var OModel = new JSONModel();
         OModel.setData(courseList);
-        this.getView().setModel(OModel, 'Course');
+        this.getView().setModel(OModel, 'CourseModel'); // named model binding, useful when we have multiple model in the same view
       }
     });
   }
