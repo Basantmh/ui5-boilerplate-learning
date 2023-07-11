@@ -73,12 +73,30 @@
           "name": "home",
           "pattern": "",
           "target": "home"
+        },
+        {
+          "name": "createMembership",
+          "pattern": "createMembership",
+          "target": "createMembership"
+        },
+        {
+          "name": "viewMembership",
+          "pattern": "viewMembership",
+          "target": "viewMembership"
         }
       ],
       "targets": {
         "home": {
           "type": "View",
           "name": "Home"
+        },
+        "createMembership": {
+          "type": "View",
+          "name": "CreateMembership"
+        },
+        "viewMembership": {
+          "type": "View",
+          "name": "ViewMembership"
         }
       }
     }

@@ -7,3 +7,15 @@
   color: white;
   font-weight: 600;
 }
+
+#name {
+  margin-left: 120px;
+}
+
+.tile {
+  margin: 20px 0px 0px 20px;
+}
+
+.flexbox-margin{
+  margin: 10px 0px 0px 20px;
+}

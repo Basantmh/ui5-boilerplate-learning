@@ -1,0 +1,49 @@
+<mvc:View
+    controllerName="ui5boilerplate.controller.ViewMembership"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        title="View Membership"
+        titleAlignment="Center"
+        showNavButton="true"
+        navButtonPress=".navToHomePage"
+    >
+        <Table items="{path: 'membershipView>/membership'}">
+            <columns>
+                <Column>
+                    <Text text="StudentID" />
+                </Column>
+                <Column>
+                    <Text text="Name" />
+                </Column>
+                <Column>
+                    <Text text="DateOfBirth" />
+                </Column>
+                <Column>
+                    <Text text="EmailID" />
+                </Column>
+                <Column>
+                    <Text text="Resident Type" />
+                </Column>
+                <Column>
+                    <Text text="Course" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text='{membershipView>studentId}' />
+                        <Text text='{membershipView>name}' />
+                        <Text text='{membershipView>dateOfBirth}' />
+                        <Text text='{membershipView>mailId}' />
+                        <Text text='{membershipView>residentType}' />
+                        <!--<Text text='{membershipView>name}' />-->
+                        <Text text='{membershipView>course}' />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:View>
