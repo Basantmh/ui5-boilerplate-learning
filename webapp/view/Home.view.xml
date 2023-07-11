@@ -27,7 +27,7 @@
                 <Input
                     type="Number"
                     width="350px"
-                    id="student_id"
+                    value="{lmsDataModel>/membershipBuffer/studentId}"
                 />
             </FlexBox>
             <FlexBox direction="Column">
@@ -43,7 +43,7 @@
                     type="Text"
                     width="350px"
                     required="true"
-                    id="name"
+                    value="{lmsDataModel>/membershipBuffer/name}"
                 />
             </FlexBox>
             <FlexBox direction="Column">
@@ -53,9 +53,10 @@
                     required="true"
                 />
                 <DatePicker
-                    id="dob_picker"
                     width="350px"
                     required="true"
+                    maxDate="{lmsDataModel>/lmsConstants/maxDateAllowed}"
+                    value="{lmsDataModel>/membershipBuffer/dateOfBirth}"
                 />
             </FlexBox>
             <FlexBox direction="Column">
@@ -68,7 +69,7 @@
                     type="Email"
                     width="350px"
                     required="true"
-                    id="email"
+                    value="{lmsDataModel>/membershipBuffer/mailId}"
                 />
             </FlexBox>
             <FlexBox direction="Column">
@@ -79,16 +80,17 @@
                 />
                 <RadioButtonGroup
                     fieldGroupIds="resident_type"
-                    id="resident_type"
+                    buttons="{lmsDataModel>/membershipBuffer/residentType}"
                 >
                     <RadioButton
                         text="Hosteller"
                         groupName="resident_type"
-                        selected="true"
+                        selected="{hosteller}"
                     />
                     <RadioButton
                         text="Non-Hosteller"
                         groupName="resident_type"
+                        selected="{nonHosteller}"
                     />
                 </RadioButtonGroup>
             </FlexBox>
@@ -100,11 +102,11 @@
                 />
                 <CheckBox
                     text="Fiction"
-                    id="interest_1"
+                    selected="{lmsDataModel>/membershipBuffer/interest/fiction}"
                 />
                 <CheckBox
                     text="Non-Fiction"
-                    id="interest_2"
+                    selected="{lmsDataModel>/membershipBuffer/interest/nonFiction}"
                 />
             </FlexBox>
             <FlexBox direction="Column">
@@ -114,13 +116,16 @@
                     required="true"
                 />
                 <ComboBox
-                    items="{ path: 'courseModel>/bachelor_degrees'}"
+                    items="{ path: 'lmsDataModel>/bachelorDegreeList'}"
                     required="true"
-                    id="course"
                     width="350px"
+                    selectedKey="{lmsDataModel>/membershipBuffer/course}"
                 >
                     <!--Binding for named model, if model is not named then use "course" for relative path-->
-                    <core:Item text="{courseModel>full_name}" />
+                    <core:Item
+                        text="{lmsDataModel>full_name}"
+                        key="{lmsDataModel>abbreviation}"
+                    />
                 </ComboBox>
             </FlexBox>
         </content>
