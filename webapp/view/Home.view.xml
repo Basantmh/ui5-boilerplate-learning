@@ -9,133 +9,34 @@
         showHeader="true"
         title="Library Management System"
         titleAlignment="Center"
-        floatingFooter="false"
-        titleLevel="Auto"
     >
-        <content>
-            <Text
-                text="Create Membership"
-                textAlign="Center"
-                width="100%"
-            />
-            <FlexBox direction="Column">
-                <Label
-                    text="Student ID"
-                    design="Bold"
-                    required="true"
-                />
-                <Input
-                    type="Number"
-                    width="350px"
-                    id="student_id"
-                />
-            </FlexBox>
-            <FlexBox direction="Column">
-                <!--SAP recommends not to use design BOLD with label, using for learning purpose-->
-                <Label
-                    text="Name"
-                    labelFor="input_name"
-                    design="Bold"
-                    required="true"
-                />
-                <Input
-                    maxLength="128"
-                    type="Text"
-                    width="350px"
-                    required="true"
-                    id="name"
-                />
-            </FlexBox>
-            <FlexBox direction="Column">
-                <Label
-                    text="{i18n>DATE_OF_BIRTH}"
-                    design="Bold"
-                    required="true"
-                />
-                <DatePicker
-                    id="dob_picker"
-                    width="350px"
-                    required="true"
-                />
-            </FlexBox>
-            <FlexBox direction="Column">
-                <Label
-                    text="Mail ID"
-                    design="Bold"
-                    required="true"
-                />
-                <Input
-                    type="Email"
-                    width="350px"
-                    required="true"
-                    id="email"
-                />
-            </FlexBox>
-            <FlexBox direction="Column">
-                <Label
-                    text="Resident Type"
-                    design="Bold"
-                    required="true"
-                />
-                <RadioButtonGroup
-                    fieldGroupIds="resident_type"
-                    id="resident_type"
-                >
-                    <RadioButton
-                        text="Hosteller"
-                        groupName="resident_type"
-                        selected="true"
-                    />
-                    <RadioButton
-                        text="Non-Hosteller"
-                        groupName="resident_type"
-                    />
-                </RadioButtonGroup>
-            </FlexBox>
-            <FlexBox direction="Column">
-                <Label
-                    text="Interest"
-                    design="Bold"
-                    required="true"
-                />
-                <CheckBox
-                    text="Fiction"
-                    id="interest_1"
-                />
-                <CheckBox
-                    text="Non-Fiction"
-                    id="interest_2"
-                />
-            </FlexBox>
-            <FlexBox direction="Column">
-                <Label
-                    text="Course"
-                    design="Bold"
-                    required="true"
-                />
-                <ComboBox
-                    items="{ path: 'courseModel>/bachelor_degrees'}"
-                    required="true"
-                    id="course"
-                    width="350px"
-                >
-                    <!--Binding for named model, if model is not named then use "course" for relative path-->
-                    <core:Item text="{courseModel>full_name}" />
-                </ComboBox>
-            </FlexBox>
-        </content>
+        <GenericTile
+            class="tile"
+            header="Create Membership"
+            frameType="TwoByHalf"
+            id="create_membership"
+            subheader="Library management system"
+            press=".navToCreateMembership"
+        >
+            <TileContent>
+                <ImageContent src="sap-icon://add-employee" />
+            </TileContent>
+        </GenericTile>
+        <GenericTile
+            class="tile"
+            header="View Membership"
+            frameType="TwoByHalf"
+            id="view_membership"
+            subheader="Library management system"
+            press=".navToViewMembership"
+        >
+            <TileContent>
+                <ImageContent src="sap-icon://company-view" />
+            </TileContent>
+        </GenericTile>
         <footer>
             <Toolbar>
-                <!--added just for understanding-->
-                <Button
-                    text="Save"
-                    type="Accept"
-                    press=".saveMembership"
-                />
-                <Button
-                    type="Reject"
-                    text="Cancle"
-                />
+                <Label text="Version 1.0" />
             </Toolbar>
         </footer>
     </Page>
