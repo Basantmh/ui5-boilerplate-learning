@@ -14,32 +14,32 @@ sap.ui.define(
       onInit() {
         /* Create JSON Model and set Model
          */
-        var OModel = new JSONModel();
-        this.getView().setModel(OModel, 'lmsDataModel');
+        this.OModel = new JSONModel();
+        this.i18nResourceBundle = this.getOwnerComponent().getModel('i18n').getResourceBundle();
+        this.getView().setModel(this.OModel, 'lmsDataModel');
         /* JSON model for membership
          */
-        OModel.setProperty('/lmsConstants', LmsConstants);
-        OModel.setProperty('/bachelorDegreeList', BachelorDegreeList);
-        OModel.setProperty('/membership', []);
-        OModel.setProperty('/membershipBuffer', MembershipModel.membershipBuffer);
+        this.OModel.setProperty('/lmsConstants', LmsConstants);
+        this.OModel.setProperty('/bachelorDegreeList', BachelorDegreeList);
+        this.OModel.setProperty('/membership', []);
+        this.OModel.setProperty('/membershipBuffer', MembershipModel.membershipBuffer);
       },
       /**
        * Validate and save membership data to JSON Model
        * @function
        */
       saveMembership() {
-        const OModel = this.getView().getModel('lmsDataModel');
-        const membershipArr = OModel.getProperty('/membership');
-        const membershipBuffer = OModel.getProperty('/membershipBuffer');
+        const membershipArr = this.OModel.getProperty('/membership');
+        const membershipBuffer = this.OModel.getProperty('/membershipBuffer');
         if (
           !this.validateMembership(membershipArr, membershipBuffer.studentId) &&
           membershipBuffer.studentId !== ''
         ) {
           membershipArr.push(membershipBuffer);
-          OModel.setProperty('/membership', membershipArr);
-          MessageToast.show('Membership created successfully!');
+          this.OModel.setProperty('/membership', membershipArr);
+          MessageToast.show(this.i18nResourceBundle.getText('MEMBER_CREATED_SUCCESS'));
         } else {
-          MessageToast.show('Error creating membership!');
+          MessageToast.show(this.i18nResourceBundle.getText('MEMBER_CREATED_ERROR'));
         }
       },
       /**

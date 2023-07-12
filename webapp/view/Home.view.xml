@@ -7,14 +7,14 @@
 >
     <Page
         showHeader="true"
-        title="Library Management System"
+        title="{i18n>TITLE}"
         titleAlignment="Center"
         floatingFooter="false"
         titleLevel="Auto"
     >
         <content>
             <Text
-                text="Create Membership"
+                text="{i18n>CREATE_MEMBERSHIP}"
                 textAlign="Center"
                 width="100%"
             />
