@@ -1,48 +1,147 @@
-<mvc:View controllerName="ui5boilerplate.controller.Home"
-  displayBlock="true"
-  xmlns="sap.m"
-  xmlns:mvc="sap.ui.core.mvc"
-  xmlns:core="sap.ui.core">
-  <Page showHeader="false">
-    <FlexBox class="integrtrPanelBg sapUiMediumMarginBottom"
-      height="250px"
-      alignItems="Center"
-      justifyContent="Center"
-      direction="Column">
-      <Image src="https://openui5.org/654aad3012a144881ab07c0bbdd26eb8/phenix_red.svg"
-        class="sapUiMediumMarginTop"
-        width="140px"
-        decorative="false" />
-      <Title class="integrtrPanelText"
-        level="H1"
-        titleStyle="H1"
-        text="{i18n>HELLO_MESSAGE}" />
-    </FlexBox>
-
-    <FlexBox alignItems="Center"
-      justifyContent="Center"
-      direction="Row">
-      <core:Icon class="sapUiTinyMarginEnd"
-        src="sap-icon://edit"
-        color="#031E48" />
-      <Title titleStyle="H5"
-        level="H5"
-        width="100%"
-        text="{i18n>GET_STARTED_TEXT}" />
-    </FlexBox>
-
-    <footer>
-      <Toolbar>
-        <Image src="/assets/github_logo.png"
-          width="30px"
-          press="githubLogoPress" />
-        <ToolbarSpacer />
-        <ToolbarSpacer />
-        <Image src="https://cdn.integrtr.com/logos/integrtr_logo_dark.png"
-          width="120px"
-          press="integrtrLogoPress" />
-      </Toolbar>
-    </footer>
-
-  </Page>
+<mvc:View
+    xmlns:tnt="sap.tnt"
+    controllerName="ui5boilerplate.controller.Home"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        showHeader="true"
+        title="{i18n>TITLE}"
+        titleAlignment="Center"
+        floatingFooter="false"
+        titleLevel="Auto"
+    >
+        <content>
+            <Text
+                text="{i18n>CREATE_MEMBERSHIP}"
+                textAlign="Center"
+                width="100%"
+            />
+            <FlexBox direction="Column">
+                <Label
+                    text="Student ID"
+                    design="Bold"
+                    required="true"
+                />
+                <Input
+                    type="Number"
+                    width="350px"
+                    value="{lmsDataModel>/membershipBuffer/studentId}"
+                />
+            </FlexBox>
+            <FlexBox direction="Column">
+                <!--SAP recommends not to use design BOLD with label, using for learning purpose-->
+                <Label
+                    text="Name"
+                    labelFor="input_name"
+                    design="Bold"
+                    required="true"
+                />
+                <Input
+                    maxLength="128"
+                    type="Text"
+                    width="350px"
+                    required="true"
+                    value="{lmsDataModel>/membershipBuffer/name}"
+                />
+            </FlexBox>
+            <FlexBox direction="Column">
+                <Label
+                    text="{i18n>DATE_OF_BIRTH}"
+                    design="Bold"
+                    required="true"
+                />
+                <DatePicker
+                    width="350px"
+                    required="true"
+                    maxDate="{lmsDataModel>/lmsConstants/maxDateAllowed}"
+                    value="{lmsDataModel>/membershipBuffer/dateOfBirth}"
+                />
+            </FlexBox>
+            <FlexBox direction="Column">
+                <Label
+                    text="Mail ID"
+                    design="Bold"
+                    required="true"
+                />
+                <Input
+                    type="Email"
+                    width="350px"
+                    required="true"
+                    value="{lmsDataModel>/membershipBuffer/mailId}"
+                />
+            </FlexBox>
+            <FlexBox direction="Column">
+                <Label
+                    text="Resident Type"
+                    design="Bold"
+                    required="true"
+                />
+                <RadioButtonGroup
+                    fieldGroupIds="resident_type"
+                    buttons="{lmsDataModel>/membershipBuffer/residentType}"
+                >
+                    <RadioButton
+                        text="Hosteller"
+                        groupName="resident_type"
+                        selected="{hosteller}"
+                    />
+                    <RadioButton
+                        text="Non-Hosteller"
+                        groupName="resident_type"
+                        selected="{nonHosteller}"
+                    />
+                </RadioButtonGroup>
+            </FlexBox>
+            <FlexBox direction="Column">
+                <Label
+                    text="Interest"
+                    design="Bold"
+                    required="true"
+                />
+                <CheckBox
+                    text="Fiction"
+                    selected="{lmsDataModel>/membershipBuffer/interest/fiction}"
+                />
+                <CheckBox
+                    text="Non-Fiction"
+                    selected="{lmsDataModel>/membershipBuffer/interest/nonFiction}"
+                />
+            </FlexBox>
+            <FlexBox direction="Column">
+                <Label
+                    text="Course"
+                    design="Bold"
+                    required="true"
+                />
+                <ComboBox
+                    items="{ path: 'lmsDataModel>/bachelorDegreeList'}"
+                    required="true"
+                    width="350px"
+                    selectedKey="{lmsDataModel>/membershipBuffer/course}"
+                >
+                    <!--Binding for named model, if model is not named then use "course" for relative path-->
+                    <core:Item
+                        text="{lmsDataModel>full_name}"
+                        key="{lmsDataModel>abbreviation}"
+                    />
+                </ComboBox>
+            </FlexBox>
+        </content>
+        <footer>
+            <Toolbar>
+                <!--added just for understanding-->
+                <Button
+                    text="Save"
+                    type="Accept"
+                    press=".saveMembership"
+                />
+                <Button
+                    type="Reject"
+                    text="Cancle"
+                />
+            </Toolbar>
+        </footer>
+    </Page>
 </mvc:View>
